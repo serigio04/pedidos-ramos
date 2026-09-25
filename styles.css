@@ -224,10 +224,19 @@ th { background-color: var(--primary); color: white; }
 
 /* SELECCIÓN DE MATERIALES (PEDIDO) */
 .selector-materiales {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 8px;
+    display: flex;
+    flex-direction: column; /* Se apilan en 1 columna para móviles */
+    gap: 10px;
     margin-bottom: 15px;
+}
+
+/* Si la pantalla es más grande que 600px (Tablets y PC) se ponen en fila */
+@media (min-width: 600px) {
+    .selector-materiales {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 8px;
+    }
 }
 
 .lista-items {
