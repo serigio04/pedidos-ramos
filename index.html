@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ramos Limpiapipas - Calculadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>💐 Ramos Limpiapipas</h1>
+        <nav class="tabs">
+            <button class="tab-btn active" data-target="tab-materiales">📦 Materiales</button>
+            <button class="tab-btn" data-target="tab-calculadora">🧮 Calculadora</button>
+        </nav>
+    </header>
+
+    <main>
+        <!-- PESTAÑA: MATERIALES -->
+        <section id="tab-materiales" class="tab-content active">
+            <h2>Gestión de Materiales</h2>
+            
+            <!-- Barra de acciones destacada para Importar/Exportar -->
+            <div class="action-bar">
+                <p class="action-title">Datos en CSV (Excel)</p>
+                <div class="action-buttons">
+                    <label for="import-csv" class="btn btn-import">
+                        📥 Importar CSV
+                    </label>
+                    <input type="file" id="import-csv" accept=".csv" style="display: none;">
+                    
+                    <button id="btn-export-materials" class="btn btn-export">
+                        📤 Exportar CSV
+                    </button>
+                </div>
+            </div>
+
+            <form id="form-material" class="card">
+                <h3>Agregar Nuevo Material</h3>
+                
+                <div class="input-group">
+                    <label for="mat-categoria">Material Base</label>
+                    <select id="mat-categoria" required>
+                        <option value="">Selecciona una categoría...</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label for="mat-detalle">Detalles (Color, grosor, etc.) - Opcional</label>
+                    <input type="text" id="mat-detalle" placeholder="Ej: Morado 7mm, o Rosado pastel">
+                </div>
+
+                <div class="input-group">
+                    <label for="mat-stock">Cantidad en Stock</label>
+                    <input type="number" id="mat-stock" min="1" required placeholder="Ej: 100">
+                </div>
+                <div class="input-group">
+                    <label for="mat-precio">Precio Unitario (Q)</label>
+                    <input type="number" id="mat-precio" step="0.01" min="0" required placeholder="Ej: 0.50">
+                </div>
+                <button type="submit" class="btn btn-primary">➕ Agregar Material</button>
+            </form>
+
+            <div class="table-container">
+                <table id="tabla-materiales">
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Stock</th>
+                            <th>Precio U.</th>
+                            <th>Acción</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Se llena con JS -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- PESTAÑA: CALCULADORA Y PEDIDOS -->
+        <section id="tab-calculadora" class="tab-content">
+            <h2>Calculadora de Pedidos</h2>
+            
+            <button id="btn-nuevo-pedido" class="btn btn-primary btn-large">
+                ✨ Crear Nuevo Pedido
+            </button>
+
+            <!-- Formulario oculto para armar el pedido -->
+            <div id="creador-pedido" class="card hidden">
+                <h3>Armar Ramo</h3>
+                <div class="input-group">
+                    <label for="ped-cliente">Nombre del Cliente / Ref.</label>
+                    <input type="text" id="ped-cliente" placeholder="Ej: Ramo 50 rosas Ana">
+                </div>
+                
+                <div class="selector-materiales">
+                    <select id="ped-select-material">
+                        <!-- Se llena con JS -->
+                    </select>
+                    <input type="number" id="ped-cantidad-uso" min="1" placeholder="Cant.">
+                    <button type="button" id="btn-add-uso" class="btn btn-secondary">Añadir</button>
+                </div>
+
+                <ul id="lista-uso-actual" class="lista-items">
+                    <!-- Materiales añadidos al ramo actual -->
+                </ul>
+
+                <div class="total-preview">
+                    Total Invertido: Q<span id="preview-total">0.00</span>
+                </div>
+
+                <div class="action-buttons">
+                    <button type="button" id="btn-cancelar-pedido" class="btn btn-danger">Cancelar</button>
+                    <button type="button" id="btn-guardar-pedido" class="btn btn-success">💾 Guardar Pedido</button>
+                </div>
+            </div>
+
+            <div class="pedidos-header">
+                <h3>Historial de Pedidos</h3>
+                <button id="btn-export-pedidos" class="btn btn-export-small">📤 Exportar Todos</button>
+            </div>
+
+            <div id="lista-pedidos" class="lista-pedidos">
+                <!-- Se llena con JS -->
+            </div>
+        </section>
+    </main>
+
+    <script type="module" src="./src/index.js"></script>
+</body>
+</html>
