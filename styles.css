@@ -1,0 +1,284 @@
+/* Variables de colores (Paleta Pastel para Manualidades) */
+:root {
+    --bg-color: #fcf9f9;
+    --primary: #ffb7b2; /* Rosa pastel */
+    --primary-dark: #ff9a93;
+    --secondary: #e2f0cb; /* Verde menta */
+    --secondary-dark: #c5e09b;
+    --text-main: #5c5c5c;
+    --text-light: #8a8a8a;
+    --white: #ffffff;
+    --border: #f0e5e5;
+    
+    /* Colores para Exportar/Importar */
+    --import-color: #a0c4ff; /* Azul pastel */
+    --export-color: #ffd6a5; /* Naranja pastel */
+    --danger: #ffadad;
+    --success: #caffbf;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding-bottom: 30px;
+}
+
+header {
+    background-color: var(--white);
+    padding: 20px 15px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+h1 {
+    font-size: 1.5rem;
+    text-align: center;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+}
+
+/* TABS */
+.tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.tab-btn {
+    flex: 1;
+    padding: 12px;
+    border: none;
+    background-color: transparent;
+    font-size: 1rem;
+    color: var(--text-light);
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab-btn.active {
+    color: var(--primary-dark);
+    border-bottom: 3px solid var(--primary);
+    font-weight: bold;
+}
+
+/* CONTENEDORES */
+main {
+    padding: 15px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+h2 {
+    font-size: 1.3rem;
+    margin: 15px 0;
+    color: var(--text-main);
+}
+
+h3 {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+.card {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* BARRA DE ACCIONES (IMPORT/EXPORT) */
+.action-bar {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 12px;
+    border: 2px dashed var(--border);
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.action-title {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+/* FORMULARIOS */
+.input-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+    color: var(--text-main);
+}
+
+input, select {
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: var(--bg-color);
+}
+
+/* BOTONES */
+.btn {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+    width: 100%;
+    transition: 0.2s;
+    display: inline-block;
+}
+
+.btn-primary { background-color: var(--primary); color: white; }
+.btn-primary:active { background-color: var(--primary-dark); }
+
+.btn-secondary { background-color: var(--secondary); color: #4a5c32; }
+.btn-danger { background-color: var(--danger); color: #7a2b2b; }
+.btn-success { background-color: var(--success); color: #2d5a27; }
+
+/* Botones especiales de Importar/Exportar */
+.btn-import { background-color: var(--import-color); color: #1e3a5f; flex: 1; }
+.btn-export { background-color: var(--export-color); color: #5c3811; flex: 1; }
+.btn-export-small { background-color: var(--export-color); color: #5c3811; width: auto; padding: 6px 12px; font-size: 0.8rem; }
+
+.btn-large {
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+}
+
+/* TABLAS */
+.table-container {
+    overflow-x: auto;
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.03);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 400px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.9rem;
+}
+
+th { background-color: var(--primary); color: white; }
+
+.btn-delete-small {
+    background-color: var(--danger);
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* SELECCIÓN DE MATERIALES (PEDIDO) */
+.selector-materiales {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+
+.lista-items {
+    list-style: none;
+    margin-bottom: 15px;
+}
+
+.lista-items li {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+    background-color: var(--bg-color);
+    border-radius: 6px;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.total-preview {
+    text-align: right;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    padding: 10px;
+    border-top: 2px dashed var(--border);
+}
+
+/* HISTORIAL PEDIDOS */
+.pedidos-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0 10px;
+}
+
+.pedido-card {
+    background: var(--white);
+    padding: 15px;
+    border-radius: 12px;
+    border-left: 5px solid var(--primary);
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.pedido-header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+
+.pedido-total { font-weight: bold; color: var(--primary-dark); }
+.pedido-fecha { font-size: 0.8rem; color: var(--text-light); }
