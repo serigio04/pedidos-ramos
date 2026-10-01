@@ -291,3 +291,13 @@ th { background-color: var(--primary); color: white; }
 
 .pedido-total { font-weight: bold; color: var(--primary-dark); }
 .pedido-fecha { font-size: 0.8rem; color: var(--text-light); }
+
+.btn-edit-small {
+    background-color: var(--import-color);
+    color: #1e3a5f;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-left: 5px;
+}

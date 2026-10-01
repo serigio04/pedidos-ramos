@@ -38,8 +38,11 @@ export function renderizarMateriales() {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td><strong>${mat.nombre}</strong></td>
-            <td>${mat.stock}</td>
-            <td>Q${parseFloat(mat.precio).toFixed(2)}</td>
+            <td>
+                <span>${mat.stock}</span>
+                <button class="btn-edit-small btn-editar-stock" data-index="${index}" title="Editar stock">✏️</button>
+            </td>
+            <td>$${parseFloat(mat.precio).toFixed(2)}</td>
             <td><button class="btn-delete-small btn-eliminar-mat" data-index="${index}">🗑️</button></td>
         `;
         tablaMateriales.appendChild(tr);
@@ -50,7 +53,9 @@ export function initMateriales() {
     cargarOpcionesMateriales();
     renderizarMateriales();
 
+// Delegación de eventos para la tabla de materiales
     document.querySelector('#tabla-materiales tbody').addEventListener('click', (e) => {
+        // --- ELIMINAR MATERIAL ---
         if (e.target.classList.contains('btn-eliminar-mat')) {
             const index = e.target.getAttribute('data-index');
             if(confirm('¿Eliminar este material?')) {
@@ -58,12 +63,32 @@ export function initMateriales() {
                 guardarMateriales();
             }
         }
+
+        // --- EDITAR STOCK MANUALMENTE ---
+        if (e.target.classList.contains('btn-editar-stock')) {
+            const index = e.target.getAttribute('data-index');
+            const mat = materiales[index];
+            
+            const nuevoStockInput = prompt(`Nuevo stock para "${mat.nombre}":`, mat.stock);
+            
+            // Si el usuario presiona "Cancelar", no hace nada
+            if (nuevoStockInput !== null) {
+                const nuevoStock = parseInt(nuevoStockInput);
+                
+                if (!isNaN(nuevoStock) && nuevoStock >= 0) {
+                    materiales[index].stock = nuevoStock;
+                    guardarMateriales(); // Guarda en localStorage y re-renderiza la tabla
+                } else {
+                    alert("Por favor, ingresa una cantidad numérica válida.");
+                }
+            }
+        }
     });
 
     document.getElementById('form-material').addEventListener('submit', (e) => {
         e.preventDefault();
         
-        // 1. Obtener la categoría
+        // 1. Obtener la categoria
         let categoria = document.getElementById('mat-categoria').value;
         if (categoria === "Otro") {
             categoria = prompt("Escribe el nombre del material base:") || "Material";
