@@ -13,7 +13,7 @@ export function actualizarSelectMaterialesPedido() {
         if(m.stock > 0) {
             const opt = document.createElement('option');
             opt.value = m.id;
-            opt.textContent = `${m.nombre} (Dispo: ${m.stock} | $${m.precio})`;
+            opt.textContent = `${m.nombre} (Dispo: ${m.stock} | Q${m.precio})`;
             selectMatPedido.appendChild(opt);
         }
     });
@@ -30,7 +30,7 @@ function actualizarVistaPedidoActual() {
         const li = document.createElement('li');
         li.innerHTML = `
             <span>${item.cantidad}x ${item.nombre}</span>
-            <span>$${item.subtotal.toFixed(2)} <button class="btn-delete-small btn-quitar-item" data-index="${index}" style="padding:2px 6px">X</button></span>
+            <span>Q${item.subtotal.toFixed(2)} <button class="btn-delete-small btn-quitar-item" data-index="${index}" style="padding:2px 6px">X</button></span>
         `;
         listaUso.appendChild(li);
     });
@@ -51,7 +51,7 @@ export function renderizarPedidos() {
             </div>
             <p style="font-size:0.9rem; margin-bottom:10px; color:var(--text-light)">${itemsHtml}</p>
             <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 10px;">
-                <span class="pedido-total">Inversión: $${p.total.toFixed(2)}</span>
+                <span class="pedido-total">Inversión: Q${p.total.toFixed(2)}</span>
                 <div style="display:flex; gap: 5px;">
                     <button class="btn-edit-small btn-editar-pedido" data-id="${p.id}" style="padding: 6px 12px; font-size: 0.8rem;">✏️ Editar</button>
                     <button class="btn-export-small btn-exportar-unico" data-id="${p.id}">📤 Exportar</button>
@@ -113,7 +113,7 @@ export function initPedidos() {
         if (e.target.classList.contains('btn-exportar-unico')) {
             const p = pedidos.find(x => x.id === id);
             if(!p) return;
-            let csv = `Pedido: ${p.cliente}, Total Invertido: $${p.total.toFixed(2)}\n\n`;
+            let csv = `Pedido: ${p.cliente}, Total Invertido: Q${p.total.toFixed(2)}\n\n`;
             csv += "Material,Cantidad,PrecioUnitario,Subtotal\n";
             p.items.forEach(i => csv += `${i.nombre},${i.cantidad},${i.precioU},${i.subtotal.toFixed(2)}\n`);
             descargarCSV(csv, `pedido_${p.cliente.replace(/\s+/g, '_')}.csv`);
