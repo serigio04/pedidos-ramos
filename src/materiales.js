@@ -42,7 +42,7 @@ export function renderizarMateriales() {
                 <span>${mat.stock}</span>
                 <button class="btn-edit-small btn-editar-stock" data-index="${index}" title="Editar stock">✏️</button>
             </td>
-            <td>$${parseFloat(mat.precio).toFixed(2)}</td>
+            <td>$${parseFloat(mat.precio).toFixed(3)}</td>
             <td><button class="btn-delete-small btn-eliminar-mat" data-index="${index}">🗑️</button></td>
         `;
         tablaMateriales.appendChild(tr);
